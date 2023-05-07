@@ -2,19 +2,16 @@ package com.masaischool.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.transaction.Status;
 
 @Entity
-@Table(name = "problems")
-public class Problem {
+@Table(name = "complaints")
+public class Complaint {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,24 +23,19 @@ public class Problem {
 	@JoinColumn(name = "employee_id", nullable = false)
 	private Employee employee;
 
-	@ManyToOne
-	@JoinColumn(name = "engineer_id")
-	private Engineer engineer;
-
 	@Column(nullable = false)
-	private Status status;
+	private String complaintId;
 
-	public Problem() {
+	public Complaint() {
 		super();
 	}
 
-	public Problem(Long id, String description, Employee employee, Engineer engineer, Status status) {
+	public Complaint(Long id, String description, Employee employee, String complaintId) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.employee = employee;
-		this.engineer = engineer;
-		this.status = status;
+		this.complaintId = complaintId;
 	}
 
 	public Long getId() {
@@ -70,20 +62,12 @@ public class Problem {
 		this.employee = employee;
 	}
 
-	public Engineer getEngineer() {
-		return engineer;
+	public String getComplaintId() {
+		return complaintId;
 	}
 
-	public void setEngineer(Engineer engineer) {
-		this.engineer = engineer;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setComplaintId(String complaintId) {
+		this.complaintId = complaintId;
 	}
 	
 	
