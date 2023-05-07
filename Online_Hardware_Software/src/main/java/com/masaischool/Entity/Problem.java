@@ -30,7 +30,6 @@ public class Problem {
 	@JoinColumn(name = "engineer_id")
 	private Engineer engineer;
 
-	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Status status;
 
