@@ -2,12 +2,14 @@ package com.masaischool.Online_Hardware_Software;
 
 import java.util.Scanner;
 
+import jakarta.transaction.SystemException;
+
 /**
  * Hello world!
  *
  */
 public class App {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IllegalStateException, SystemException {
 		Scanner sc = new Scanner(System.in);
 		int choice;
 		do {
@@ -20,10 +22,10 @@ public class App {
 			choice = sc.nextInt();
 			switch (choice) {
 			case 1:
-				HodLogin(sc);
+				HODUI.Hodlogin(sc);
 				break;
 			case 2:
-				EngineerLogin(sc);
+				EnginnerUI.Enginnerlogin(sc);
 				break;
 			case 3:
 				EmployeeUI.EmployeeLogin(sc);

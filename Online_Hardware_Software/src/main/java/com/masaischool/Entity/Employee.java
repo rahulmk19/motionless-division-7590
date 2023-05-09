@@ -25,19 +25,16 @@ public class Employee {
 	@Column(nullable = false)
 	private String password;
 
-	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-	private List<Complaint> complaints = new ArrayList<>();
-
-	public Employee() {
-		super();
-	}
-
-	public Employee(Long id, String username, String password, List<Complaint> complaints) {
+	public Employee(Long id, String username, String password) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.complaints = complaints;
+	}
+
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -64,13 +61,12 @@ public class Employee {
 		this.password = password;
 	}
 
-	public List<Complaint> getComplaints() {
-		return complaints;
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 
-	public void setComplaints(List<Complaint> complaints) {
-		this.complaints = complaints;
-	}
+	
 
 	
 }
