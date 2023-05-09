@@ -1,4 +1,4 @@
-package DAO;
+package com.masaischool.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

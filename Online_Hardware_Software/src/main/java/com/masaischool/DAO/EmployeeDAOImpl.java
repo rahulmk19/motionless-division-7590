@@ -1,9 +1,11 @@
-package DAO;
+package com.masaischool.DAO;
 
 import com.masaischool.Entity.Employee;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.Transaction;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
@@ -14,27 +16,24 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	    public void registerEmployee(String username, String password) {
-	        EntityManager entityManager=EmUtils.getAnEntityManager();
-	        
+	    public void registerEmployee(String username, String password) throws IllegalStateException, SystemException {
+	        EntityManager em=EmUtils.getAnEntityManager();
+	        EntityTransaction et=em.getTransaction();
 
 	        try {
-	        	entityManager.getTransaction().begin();
-	            
-
 	            Employee employee = new Employee();
 	            employee.setUsername(username);
 	            employee.setPassword(password);
-
-	            entityManager.persist(employee);
-	            entityManager.getTransaction().commit();;
+	            et.begin();
+	            em.persist(employee);
+	            et.commit();
 	        } catch (Exception e) {
-	            if (entityManager.getTransaction() != null) {
-	            	entityManager.getTransaction().rollback();
+	            if (et != null) {
+	            	et.rollback();
 	            }
 	            e.printStackTrace();
 	        } finally {
-	            entityManager.close();
+	        	em.close();
 	        }
 	    }
 

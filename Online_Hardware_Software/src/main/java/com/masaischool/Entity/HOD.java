@@ -23,22 +23,16 @@ public class HOD {
 	@Column(nullable = false)
 	private String password;
 
-	@OneToMany(mappedBy = "hod", cascade = CascadeType.ALL)
-	private List<Engineer> engineers = new ArrayList<>();
-
-	@OneToMany(mappedBy = "hod", cascade = CascadeType.ALL)
-	private List<Problem> problems = new ArrayList<>();
-
 	public HOD() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public HOD(Long id, String username, String password, List<Engineer> engineers, List<Problem> problems) {
+	public HOD(Long id, String username, String password) {
+		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.engineers = engineers;
-		this.problems = problems;
 	}
 
 	public Long getId() {
@@ -65,20 +59,5 @@ public class HOD {
 		this.password = password;
 	}
 
-	public List<Engineer> getEngineers() {
-		return engineers;
-	}
-
-	public void setEngineers(List<Engineer> engineers) {
-		this.engineers = engineers;
-	}
-
-	public List<Problem> getProblems() {
-		return problems;
-	}
-
-	public void setProblems(List<Problem> problems) {
-		this.problems = problems;
-	}
-
+	
 }

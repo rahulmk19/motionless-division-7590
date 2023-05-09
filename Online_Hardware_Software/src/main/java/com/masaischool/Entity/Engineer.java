@@ -28,25 +28,22 @@ public class Engineer {
 	@Column(nullable = false)
 	private String password;
 
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private Category category;
-
-	@OneToMany(mappedBy = "engineer", cascade = CascadeType.ALL)
-	private List<Problem> problems = new ArrayList<>();
+	
 
 	public Engineer() {
 		super();
 	}
 
-	public Engineer(Long id, String username, String password, Category category, List<Problem> problems) {
+	
+
+	public Engineer(Long id, String username, String password) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.category = category;
-		this.problems = problems;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -72,21 +69,7 @@ public class Engineer {
 		this.password = password;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public List<Problem> getProblems() {
-		return problems;
-	}
-
-	public void setProblems(List<Problem> problems) {
-		this.problems = problems;
-	}
+	
 	
 	
 }

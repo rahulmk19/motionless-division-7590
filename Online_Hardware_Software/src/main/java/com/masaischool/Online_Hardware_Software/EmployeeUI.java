@@ -2,14 +2,16 @@ package com.masaischool.Online_Hardware_Software;
 
 import java.util.Scanner;
 
-import DAO.EmployeeDAO;
-import DAO.EmployeeDAOImpl;
+import com.masaischool.DAO.EmployeeDAO;
+import com.masaischool.DAO.EmployeeDAOImpl;
+
+import jakarta.transaction.SystemException;
 
 public class EmployeeUI {
 
 	static boolean isloggedin = false;
 
-	public static void EmployeeLogin(Scanner sc) {
+	public static void EmployeeLogin(Scanner sc) throws IllegalStateException, SystemException {
 		if (isloggedin) {
 			EmployeeMenu(sc);
 		} else {
@@ -55,18 +57,12 @@ public class EmployeeUI {
 
 	}
 
-	public static void signup(Scanner sc) {
+	public static void signup(Scanner sc) throws IllegalStateException, SystemException {
 		System.out.print("\nEnter a username: ");
 		String username = sc.next();
 		System.out.print("Enter a password: ");
 		String password = sc.next();
 		EmployeeDAO dao = new EmployeeDAOImpl();
-//		if (dao.registerEmployee(username , password)) {
-//			System.out.println("Login successful!");
-//			EmployeeUI.EmployeeLogin(sc);
-//		} else {
-//			System.out.println("Invalid username or password.");
-//		}
 		dao.registerEmployee(username, password);
 		System.out.println("Registration Succesful");
 	}
